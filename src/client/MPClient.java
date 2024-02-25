@@ -1,4 +1,4 @@
-package multiplayer.networking.client;
+package client;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,8 +9,8 @@ import java.nio.ByteBuffer;
 import java.nio.channels.DatagramChannel;
 import java.util.ArrayList;
 
-import multiplayer.networking.server.MPServer;
-import multiplayer.networking.tpackets.Packet;
+import packets.Packet;
+import server.MPServer;
 
 public class MPClient {
     // MAIN METHOD

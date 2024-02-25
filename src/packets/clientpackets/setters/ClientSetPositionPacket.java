@@ -1,16 +1,17 @@
-package multiplayer.networking.tpackets.clientPackets.setters;
+package packets.clientpackets.setters;
 
-import graphics.objects.Vertex;
+import objects.Vertex;
 
 public class ClientSetPositionPacket extends ClientSetPacket {
     public Vertex position;
 
     public ClientSetPositionPacket(Vertex position) {
+        clientSetType = clientSetTypeEnum.POSITION;
         this.position = position;
     }
 
     public String toString() {
-        return wrapString("POSITION" + position.x + " " + position.y + " " + position.z);
+        return wrapString(position.x + " " + position.y + " " + position.z);
     }
 
 }

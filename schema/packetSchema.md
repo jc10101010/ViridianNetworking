@@ -1,7 +1,7 @@
 
 PACKET DEFINITION
 
-ClientPackets
+clientpackets
 
 ClientRequestPacket - RESPONSE ServerStatePacket
 START CLIENT REQUEST END
@@ -23,7 +23,7 @@ START CLIENT SET POSITION 2 2 2 END
 START CLIENT REQUEST END
 ###########################################
 
-ServerPackets
+serverpackets
 
 ServerStatePacket - RESPONDS TO ClientRequestPacket
 START SERVER STATE POSITION name 1 1 1.5 END

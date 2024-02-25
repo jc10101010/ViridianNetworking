@@ -1,4 +1,4 @@
-package multiplayer.networking.server;
+package server;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -11,17 +11,17 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
-import graphics.objects.Vertex;
-import multiplayer.networking.tpackets.Packet;
-import multiplayer.networking.tpackets.clientPackets.ClientJoinPacket;
-import multiplayer.networking.tpackets.clientPackets.ClientLeavePacket;
-import multiplayer.networking.tpackets.clientPackets.ClientRequestPacket;
-import multiplayer.networking.tpackets.clientPackets.setters.ClientSetPositionPacket;
-import multiplayer.networking.tpackets.serverPackets.ServerConfirmJoinPacket;
-import multiplayer.networking.tpackets.serverPackets.ServerConfirmSetPacket;
-import multiplayer.networking.tpackets.serverPackets.ServerRegisterplayerPacket;
-import multiplayer.networking.tpackets.serverPackets.ServerRemoveplayerPacket;
-import multiplayer.networking.tpackets.serverPackets.ServerStatePositionPacket;
+import objects.Vertex;
+import packets.Packet;
+import packets.clientpackets.ClientJoinPacket;
+import packets.clientpackets.ClientLeavePacket;
+import packets.clientpackets.ClientRequestPacket;
+import packets.clientpackets.setters.ClientSetPositionPacket;
+import packets.serverpackets.ServerConfirmJoinPacket;
+import packets.serverpackets.ServerConfirmSetPacket;
+import packets.serverpackets.ServerRegisterplayerPacket;
+import packets.serverpackets.ServerRemoveplayerPacket;
+import packets.serverpackets.ServerStatePositionPacket;
 
 public class MPServer {
     // MAIN METHOD

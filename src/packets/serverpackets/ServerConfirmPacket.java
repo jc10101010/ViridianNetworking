@@ -1,4 +1,7 @@
-package multiplayer.networking.tpackets.serverPackets;
+package packets.serverpackets;
+import packets.ServerPacket;
+
+import packets.ServerPacket;
 
 public abstract class ServerConfirmPacket extends ServerPacket{
     public String wrapString(String toWrap) {

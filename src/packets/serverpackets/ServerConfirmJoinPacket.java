@@ -1,4 +1,5 @@
-package multiplayer.networking.tpackets.serverPackets;
+package packets.serverpackets;
+import packets.ServerPacket;
 
 public class ServerConfirmJoinPacket extends ServerConfirmPacket{
     public String toString() {

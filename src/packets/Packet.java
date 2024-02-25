@@ -1,17 +1,17 @@
-package multiplayer.networking.tpackets;
+package packets;
 
 import java.net.SocketAddress;
 import java.nio.ByteBuffer;
 
-import graphics.objects.Vertex;
-import multiplayer.networking.tpackets.clientPackets.*;
-import multiplayer.networking.tpackets.clientPackets.setters.*;
-import multiplayer.networking.tpackets.serverPackets.ServerConfirmJoinPacket;
-import multiplayer.networking.tpackets.serverPackets.ServerConfirmSetPacket;
-import multiplayer.networking.tpackets.serverPackets.ServerRegisterplayerPacket;
-import multiplayer.networking.tpackets.serverPackets.ServerRemoveplayerPacket;
-import multiplayer.networking.tpackets.serverPackets.ServerStatePacket;
-import multiplayer.networking.tpackets.serverPackets.ServerStatePositionPacket;
+import objects.Vertex;
+import packets.clientpackets.*;
+import packets.clientpackets.setters.*;
+import packets.serverpackets.ServerConfirmJoinPacket;
+import packets.serverpackets.ServerConfirmSetPacket;
+import packets.serverpackets.ServerRegisterplayerPacket;
+import packets.serverpackets.ServerRemoveplayerPacket;
+import packets.serverpackets.ServerStatePacket;
+import packets.serverpackets.ServerStatePositionPacket;
 
 //A Packet is an abstract Object that represents an packet object sent between the server and the client
 //Packets contain the data relevant to their purpose.
@@ -19,25 +19,18 @@ import multiplayer.networking.tpackets.serverPackets.ServerStatePositionPacket;
 //A packet can be transformed into text by calling the toString() function
 
 public abstract class Packet {
-    // Abstract class
-
-    // Used to change behaviour of super methods
-    public static enum role {
+    public static enum packetRoleEnum {
         SERVER,
         CLIENT
     }
-
-    // This is set as described above
-    public role packetRole;
+    public packetRoleEnum packetRole;
 
     // Wraps a string in the data passed in, turns into chain where subclasses call
-    // wrapString of their super classes
     public String wrapString(String toWrap) {
         return "START " + packetRole.name() + " " + toWrap + " END";
     }
 
     // Requires that all proper Packet subclaases implement a toString method which
-    // converts from a packet to a string to send
     public abstract String toString();
 
     // Convert a byte buffer into a packet object

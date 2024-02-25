@@ -1,4 +1,6 @@
-package multiplayer.networking.tpackets.serverPackets;
+package packets.serverpackets;
+
+import packets.ServerPacket;
 
 public class ServerRemoveplayerPacket  extends ServerPacket{
     private String name;

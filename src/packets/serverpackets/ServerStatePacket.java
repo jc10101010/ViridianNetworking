@@ -1,4 +1,6 @@
-package multiplayer.networking.tpackets.serverPackets;
+package packets.serverpackets;
+
+import packets.ServerPacket;
 
 public abstract class ServerStatePacket extends ServerPacket{
     

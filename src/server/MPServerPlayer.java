@@ -1,9 +1,9 @@
-package multiplayer.networking.server;
+package server;
 
 import java.util.ArrayList;
 
-import graphics.objects.Vertex;
-import multiplayer.networking.tpackets.Packet;
+import objects.Vertex;
+import packets.Packet;
 
 public class MPServerPlayer {
     private String name;

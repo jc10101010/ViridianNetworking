@@ -1,6 +1,7 @@
-package multiplayer.networking.tpackets.serverPackets;
+package packets.serverpackets;
 
-import graphics.objects.Vertex;
+import packets.ServerPacket;
+import objects.Vertex;
 
 public class ServerStatePositionPacket extends ServerStatePacket{
     public String name;
