@@ -1,6 +1,7 @@
-# Multiplayer Graphics - combining both features into a 3D demo
+# Viridian Networking - A UDP game networking solution
 
-A 3D multiplayer test using self made graphics package as well as self made UDP protocall.
+A interface for networking 3D games. Can be reused for multiple projects.
+Client and server communicate using packets.
 
 Run server demo with
 ```
