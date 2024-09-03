@@ -2,15 +2,17 @@ package packets;
 
 public abstract class ServerPacket extends Packet {
     public static enum serverDataTypeEnum {
-        JOIN,
-        LEAVE,
-        REQUEST,
-        SET
+        STATE,
+        CONFIRM,
+        YOUJOINED
     }
-    public clientDataTypeEnum clientDataType;
+    public serverDataTypeEnum serverDataType;
 
     public ServerPacket() {
-        super();
         packetRole = packetRoleEnum.SERVER;
+    }
+
+    public String wrapString(String valueToWrap) {
+        return super.wrapString(serverDataType.name() + " " + valueToWrap);
     }
 }

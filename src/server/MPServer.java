@@ -13,15 +13,9 @@ import java.util.Set;
 
 import objects.Vertex;
 import packets.Packet;
-import packets.clientpackets.ClientJoinPacket;
-import packets.clientpackets.ClientLeavePacket;
-import packets.clientpackets.ClientRequestPacket;
-import packets.clientpackets.setters.ClientSetPositionPacket;
-import packets.serverpackets.ServerConfirmJoinPacket;
-import packets.serverpackets.ServerConfirmSetPacket;
-import packets.serverpackets.ServerRegisterplayerPacket;
-import packets.serverpackets.ServerRemoveplayerPacket;
-import packets.serverpackets.ServerStatePositionPacket;
+import packets.clientpackets.setters.*;
+import packets.clientpackets.*;
+import packets.serverpackets.*;
 
 public class MPServer {
     // MAIN METHOD
@@ -120,12 +114,21 @@ public class MPServer {
 
     // Process a client set state request operation
     public void processRequestPacket() {
+
+
         MPServerPlayer clientPlayer = players.get(recentClient);
         // For every player that is not the current player queue up a packet informing
         // current player of their position
+
+        System.out.println("HELLO");
         for (MPServerPlayer otherPlayer : players.values()) {
 
+            
+
             if (!otherPlayer.equals(clientPlayer)) {
+
+
+                
 
                 responsePackets.add(new ServerStatePositionPacket(otherPlayer.getName(), otherPlayer.getPosition()));
 
@@ -139,13 +142,8 @@ public class MPServer {
     public void processLeavePacket() {
         playerCount--;
 
-        // Inform all players of leaving
-        MPServerPlayer clientPlayer = players.get(recentClient);
-        sendPacketToAllOther(new ServerRemoveplayerPacket(clientPlayer.getName()), clientPlayer);
-
         // Remoge the player from the player ip Map
         players.remove(recentClient);
-        ;
     }
 
     // Process a client set position packet and moves the MPServerPlayer
@@ -155,9 +153,9 @@ public class MPServer {
         // Move the client's player object to the position they give
         ClientSetPositionPacket packet = (ClientSetPositionPacket) recentPacket;
         clientPlayer.setPosition(packet.position);
-
+        
         // Send back a confirm set packet
-        responsePackets.add(new ServerConfirmSetPacket());
+        responsePackets.add(new ServerConfirmPacket());
     }
 
     // Process a client join packet
@@ -168,32 +166,9 @@ public class MPServer {
         // Add the new player to the map of players to ips
         MPServerPlayer clientPlayer = new MPServerPlayer(playerName);
         players.put(recentClient, clientPlayer);
+        
+        responsePackets.add(new ServerYouJoinedPacket());
 
-        responsePackets.add(new ServerConfirmJoinPacket());
-
-        sendPacketToAllOther(new ServerRegisterplayerPacket(clientPlayer.getName()), clientPlayer);
-        sendJoinPacketsForOthers(clientPlayer);
-    }
-
-    // Queues up a specific packet to all other players in game
-    public void sendPacketToAllOther(Packet packet, MPServerPlayer currentPlayer) {
-        for (MPServerPlayer otherPlayer : players.values()) {
-
-            if (!otherPlayer.equals(currentPlayer)) {
-                otherPlayer.queuePacket(packet);
-            }
-
-        }
-    }
-
-    public void sendJoinPacketsForOthers(MPServerPlayer currentPlayer) {
-        for (MPServerPlayer otherPlayer : players.values()) {
-
-            if (!otherPlayer.equals(currentPlayer)) {
-                currentPlayer.queuePacket(new ServerRegisterplayerPacket(otherPlayer.getName()));
-            }
-
-        }
     }
 
     // Respond to a received message

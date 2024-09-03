@@ -36,13 +36,6 @@ START SERVER CONFIRM JOIN END
 
 TO DO:
 
-ServerRegisterplayerPacket - IS LOADED BY ClientJoinPacket
-START SERVER ADD <name> END
-
-ServerRemoveplayerPacket - IS LOADED BY ClientLeavePacket
-START SERVER REMOVE <name> END
-
-
 
 ################# EXTRA PACKETS FOR LATER ERRORS #################
 

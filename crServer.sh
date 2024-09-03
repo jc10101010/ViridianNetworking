@@ -1,3 +1,4 @@
+find -name  "*.class" -exec rm {} +
 find -name "*.java" > javafiles.txt
-javac @javafiles.txt
-java -cp "src" src/server/MPServer.java
+javac.exe @javafiles.txt
+java.exe -cp "src" src/server/MPServer.java

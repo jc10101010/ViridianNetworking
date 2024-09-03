@@ -1,17 +1,13 @@
 package packets;
 
+import java.io.Console;
 import java.net.SocketAddress;
 import java.nio.ByteBuffer;
 
 import objects.Vertex;
 import packets.clientpackets.*;
 import packets.clientpackets.setters.*;
-import packets.serverpackets.ServerConfirmJoinPacket;
-import packets.serverpackets.ServerConfirmSetPacket;
-import packets.serverpackets.ServerRegisterplayerPacket;
-import packets.serverpackets.ServerRemoveplayerPacket;
-import packets.serverpackets.ServerStatePacket;
-import packets.serverpackets.ServerStatePositionPacket;
+import packets.serverpackets.*;
 
 //A Packet is an abstract Object that represents an packet object sent between the server and the client
 //Packets contain the data relevant to their purpose.
@@ -56,6 +52,7 @@ public abstract class Packet {
 
     // Converts a string to a packet object, through checking the token indexes
     public static Packet stringToPacket(String msg) throws IndexOutOfBoundsException {
+        System.out.println(msg);
         Packet packet = null;
         String[] tokens = msg.split(" ");
         if (hasStartAndEnd(tokens)) {
@@ -90,22 +87,12 @@ public abstract class Packet {
 
                     }
                 } else if (tokens[2].equals("CONFIRM")) {
-                    if (tokens[3].equals("JOIN")) {
 
-                        packet = new ServerConfirmJoinPacket();
+                    packet = new ServerConfirmPacket();
 
-                    } else if (tokens[3].equals("SET")) {
+                } else if (tokens[2].equals("YOUJOINED")) {
 
-                        packet = new ServerConfirmSetPacket();
-
-                    }
-                } else if (tokens[2].equals("ADD")) {
-
-                    packet = new ServerRegisterplayerPacket(tokens[3]);
-
-                } else if (tokens[2].equals("REMOVE")) {
-
-                    packet = new ServerRemoveplayerPacket(tokens[3]);
+                    packet = new ServerYouJoinedPacket();
 
                 }
             }

@@ -8,12 +8,13 @@ public class ServerStatePositionPacket extends ServerStatePacket{
     public Vertex vertex;
 
     public ServerStatePositionPacket(String name, Vertex vertex) {
+        this.serverStateType = serverStateTypeEnum.POSITION;
         this.name = name;
         this.vertex = vertex;
     }
 
     public String toString() {
-        return super.wrapString("POSITION " + name + " " +  vertex.x + " " + vertex.y + " " + vertex.z);
+        return super.wrapString(name + " " +  vertex.x + " " + vertex.y + " " + vertex.z);
     }
 
 }
