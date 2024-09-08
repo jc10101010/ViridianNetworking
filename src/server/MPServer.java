@@ -2,19 +2,15 @@ package server;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.net.Socket;
 import java.net.SocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.DatagramChannel;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Set;
-
-import objects.Vertex;
 import packets.Packet;
-import packets.clientpackets.setters.*;
 import packets.clientpackets.*;
+import packets.clientpackets.setters.*;
 import packets.serverpackets.*;
 
 public class MPServer {
@@ -91,7 +87,6 @@ public class MPServer {
             Set<SocketAddress> ips = players.keySet();
 
             if (ips.contains(recentClient)) {
-                responsePackets = players.get(recentClient).loadQueue();
                 if (packetClass.equals(ClientLeavePacket.class)) {
                     ;
                     processLeavePacket();
@@ -99,7 +94,9 @@ public class MPServer {
                     processSetPositionPacket();
                 } else if (packetClass.equals(ClientRequestPacket.class)) {
                     processRequestPacket();
-                }
+                } else if (packetClass.equals(ClientSetRotationPacket.class)) {
+                    processSetRotationPacket();
+                } 
 
             } else {
 
@@ -131,6 +128,7 @@ public class MPServer {
                 
 
                 responsePackets.add(new ServerStatePositionPacket(otherPlayer.getName(), otherPlayer.getPosition()));
+                responsePackets.add(new ServerStateRotationPacket(otherPlayer.getName(), otherPlayer.getRotation()));
 
             }
 
@@ -153,6 +151,18 @@ public class MPServer {
         // Move the client's player object to the position they give
         ClientSetPositionPacket packet = (ClientSetPositionPacket) recentPacket;
         clientPlayer.setPosition(packet.position);
+        
+        // Send back a confirm set packet
+        responsePackets.add(new ServerConfirmPacket());
+    }
+
+    // Process a client set rotation packet and moves the MPServerPlayer
+    public void processSetRotationPacket() {
+        MPServerPlayer clientPlayer = players.get(recentClient);
+
+        // Move the client's player object to the rotation they give
+        ClientSetRotationPacket packet = (ClientSetRotationPacket) recentPacket;
+        clientPlayer.setRotation(packet.rotation);
         
         // Send back a confirm set packet
         responsePackets.add(new ServerConfirmPacket());

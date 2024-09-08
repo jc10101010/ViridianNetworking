@@ -1,16 +1,7 @@
-# Viridian Networking - A UDP game networking solution
+# Turquoise Graphics - a reusable graphics engine for Java
 
-A interface for networking 3D games. Can be reused for multiple projects.
-Client and server communicate using packets.
+A graphics package using Java. This demo shows a few of the engines features.
 
-Run server demo with
-```
-./crServer.sh
-```
-
-Run client demo with
-```
-./crClient.sh
-```
+Run src/GFrame.java to run project
 
 

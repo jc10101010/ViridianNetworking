@@ -5,7 +5,8 @@ import packets.ServerPacket;
 public abstract class ServerStatePacket extends ServerPacket{
 
     public static enum serverStateTypeEnum {
-        POSITION
+        POSITION,
+        ROTATION
     }
     public serverStateTypeEnum serverStateType;
 

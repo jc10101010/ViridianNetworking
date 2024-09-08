@@ -1,9 +1,6 @@
 package packets;
 
-import java.io.Console;
-import java.net.SocketAddress;
 import java.nio.ByteBuffer;
-
 import objects.Vertex;
 import packets.clientpackets.*;
 import packets.clientpackets.setters.*;
@@ -37,6 +34,7 @@ public abstract class Packet {
             packet = stringToPacket(msg);
         } catch (IndexOutOfBoundsException e) {
             System.out.println(e.getMessage());
+            e.printStackTrace();
         }
         return packet;
     }
@@ -52,7 +50,7 @@ public abstract class Packet {
 
     // Converts a string to a packet object, through checking the token indexes
     public static Packet stringToPacket(String msg) throws IndexOutOfBoundsException {
-        System.out.println(msg);
+        //System.out.println("ACTUALLY READS:" + msg);
         Packet packet = null;
         String[] tokens = msg.split(" ");
         if (hasStartAndEnd(tokens)) {
@@ -66,6 +64,11 @@ public abstract class Packet {
 
                         Vertex vertex = tokensToVertex(tokens[4], tokens[5], tokens[6]);
                         packet = new ClientSetPositionPacket(vertex);
+
+                    } else if (tokens[3].equals("ROTATION")) {
+
+                        Vertex vertex = tokensToVertex(tokens[4], tokens[5], tokens[6]);
+                        packet = new ClientSetRotationPacket(vertex);
 
                     }
                 } else if (tokens[2].equals("JOIN")) {
@@ -84,6 +87,12 @@ public abstract class Packet {
                         String name = tokens[4];
                         Vertex vertex = tokensToVertex(tokens[5], tokens[6], tokens[7]);
                         packet = new ServerStatePositionPacket(name, vertex);
+
+                    } else if (tokens[3].equals("ROTATION")) {
+
+                        String name = tokens[4];
+                        Vertex vertex = tokensToVertex(tokens[5], tokens[6], tokens[7]);
+                        packet = new ServerStateRotationPacket(name, vertex);
 
                     }
                 } else if (tokens[2].equals("CONFIRM")) {
@@ -117,6 +126,7 @@ public abstract class Packet {
         } catch (NumberFormatException e) {
             vertex = null;
             System.out.println(e.getMessage());
+            e.printStackTrace();
         }
 
         return vertex;

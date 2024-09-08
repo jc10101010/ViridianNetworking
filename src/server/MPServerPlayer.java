@@ -1,18 +1,18 @@
 package server;
 
 import java.util.ArrayList;
-
 import objects.Vertex;
 import packets.Packet;
 
 public class MPServerPlayer {
     private String name;
-    private Vertex position;
+    private Vertex position, rotation;
     private ArrayList<Packet> queue = new ArrayList<>();
 
     public MPServerPlayer(String playerName) {
         name = playerName;
         position = new Vertex(0, 0, 0);
+        rotation = new Vertex(0, 0, 0);
     }
 
     public Vertex getPosition() {
@@ -21,20 +21,17 @@ public class MPServerPlayer {
     public void setPosition(Vertex position) {
         this.position = position;
     }
+
+    
+    public Vertex getRotation() {
+        return rotation;
+    }
+    public void setRotation(Vertex rotation) {
+        this.rotation = rotation;
+    }
+
     public String getName() {
         return name;
     }
 
-    //Takes a packet object and adds it to the queue
-    public void queuePacket(Packet packet) {
-        queue.add(packet);
-    }
-
-    //Returns current packet queue and resets queue
-    public ArrayList<Packet> loadQueue() {
-        ArrayList<Packet> queueCopy = queue;
-        
-        queue = new ArrayList<Packet>(); 
-        return queueCopy;
-    }
 }

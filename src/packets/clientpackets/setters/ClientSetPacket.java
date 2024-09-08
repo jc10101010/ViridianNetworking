@@ -4,7 +4,8 @@ import packets.ClientPacket;
 
 public abstract class ClientSetPacket extends ClientPacket {// subclasses do not have datatypes for now
     public static enum clientSetTypeEnum {
-        POSITION
+        POSITION,
+        ROTATION
     }
     public clientSetTypeEnum clientSetType;
 

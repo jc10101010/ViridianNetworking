@@ -2,12 +2,12 @@ package packets.serverpackets;
 
 import objects.Vertex;
 
-public class ServerStatePositionPacket extends ServerStatePacket{
+public class ServerStateRotationPacket extends ServerStatePacket{
     public String name;
     public Vertex vertex;
 
-    public ServerStatePositionPacket(String name, Vertex vertex) {
-        this.serverStateType = serverStateTypeEnum.POSITION;
+    public ServerStateRotationPacket(String name, Vertex vertex) {
+        this.serverStateType = serverStateTypeEnum.ROTATION;
         this.name = name;
         this.vertex = vertex;
     }
