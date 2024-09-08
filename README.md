@@ -1,7 +1,8 @@
 # Viridian Networking - A UDP game networking solution written in Java
 
 In this demo, Viridian Networking is used to implement 
-basic multiplayer in a 3D game.
+basic multiplayer in a 3D game. The 3D game is created 
+by TurquoiseGraphics.
 
 Run server with:
 ```
