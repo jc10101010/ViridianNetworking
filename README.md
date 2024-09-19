@@ -1,4 +1,4 @@
-# Viridian Networking
+# ViridianNetworking
 
 **Viridian Networking** is a lightweight, UDP-based networking solution in Java designed to facilitate basic multiplayer functionality in 3D games. It utilizes Java NIO's `DatagramChannel` for real-time communication between clients and servers. This demo integrates Viridian Networking with **TurquoiseGraphics**, a simple 3D engine, showcasing how multiplayer gameplay can be implemented over UDP.
 
